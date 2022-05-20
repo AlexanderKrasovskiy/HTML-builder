@@ -21,7 +21,10 @@ async function buildHtml(htmlLink, componentsDir, destDir) {
         const fileContent = await readFile(pathToFile, { encoding: 'utf-8' });
         const fileName = path.parse(pathToFile).name;
 
-        htmlTemplate = htmlTemplate.replace(`{{${fileName}}}`, fileContent);
+        htmlTemplate = htmlTemplate.replaceAll(
+          `{{${fileName}}}`,
+          `\n${fileContent}\n`
+        );
       }
     }
 
